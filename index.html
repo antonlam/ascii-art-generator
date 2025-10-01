@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ASCII Art Generator</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>ASCII Art Generator</h2>
+    <div class="row">
+      <label for="inputText">Input Text:</label>
+      <input type="text" id="inputText" />
+    </div>
+    <div class="row">
+      <label for="prefix">Prefix:</label>
+      <input type="text" id="prefix" class="small" value="#" />
+      <label for="suffix" style="width: 60px;">Suffix:</label>
+      <input type="text" id="suffix" class="smaller" />
+      <button onclick="generateAsciiArt()">Generate ASCII Art</button>
+      <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+    <div class="output-label">Output ASCII Art:</div>
+    <div class="output-container">
+    <textarea id="outputArt" readonly></textarea>
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
