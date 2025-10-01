@@ -2,6 +2,8 @@
 #  Format: Each character is 6 lines tall, prefixed with 
 import tkinter as tk
 from tkinter import ttk, scrolledtext
+import json
+import os
 
 ASCII_CHARS = {
     #  UPPERCASE LETTERS A-Z
@@ -789,31 +791,32 @@ ASCII_CHARS = {
     ]
 }
 
-
 class AsciiArtGenerator(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("ASCII Art Generator")
-        self.geometry("800x480")
+        self.geometry("750x300")
 
         input_frame = ttk.Frame(self)
         input_frame.pack(fill="x", pady=(10,0), padx=10)
         ttk.Label(input_frame, text="Input Text:").pack(side="left")
         self.input_var = tk.StringVar()
-        self.input_entry = ttk.Entry(input_frame, textvariable=self.input_var, width=70)
+        self.input_entry = ttk.Entry(input_frame, textvariable=self.input_var, width=78)
         self.input_entry.pack(side="left", padx=(5,0))
 
         # Controls row - all widgets tightly packed in the same frame
+        pre_suf_fix = 20
+
         control_frame = ttk.Frame(self)
         control_frame.pack(fill="x", pady=(10,0), padx=10)
         ttk.Label(control_frame, text="Prefix:").pack(side="left")
         self.prefix_var = tk.StringVar(value="#")
-        self.prefix_entry = ttk.Entry(control_frame, textvariable=self.prefix_var, width=8)
+        self.prefix_entry = ttk.Entry(control_frame, textvariable=self.prefix_var, width=pre_suf_fix)
         self.prefix_entry.pack(side="left", padx=(2,5))
 
         ttk.Label(control_frame, text="Suffix:").pack(side="left")
         self.suffix_var = tk.StringVar(value="")
-        self.suffix_entry = ttk.Entry(control_frame, textvariable=self.suffix_var, width=8)
+        self.suffix_entry = ttk.Entry(control_frame, textvariable=self.suffix_var, width=pre_suf_fix)
         self.suffix_entry.pack(side="left", padx=(2,5))
 
         self.generate_button = ttk.Button(control_frame, text="Generate ASCII Art", command=self.generate_ascii_art)
@@ -822,7 +825,18 @@ class AsciiArtGenerator(tk.Tk):
         # Output label and display
         ttk.Label(self, text="Output ASCII Art:").pack(anchor="w", padx=15, pady=(15,5))
         self.output_text = scrolledtext.ScrolledText(self, height=8, width=60, font=("Courier", 11))
-        self.output_text.pack(fill="both", expand=True, padx=10, pady=5)
+        self.output_text.pack(fill="both", expand = True, padx=10, pady=5)
+
+    # Inside __init__, after creating self.generate_button
+        self.copy_button = ttk.Button(control_frame, text="Copy to Clipboard", command=self.copy_to_clipboard)
+        self.copy_button.pack(side="left", padx=2)
+
+    # Define the method
+    def copy_to_clipboard(self):
+        ascii_text = self.output_text.get("1.0", "end-1c")  # get all text except trailing newline
+        if ascii_text:
+            self.clipboard_clear()
+            self.clipboard_append(ascii_text)
 
     def generate_ascii_art(self):
         input_text = self.input_var.get()  # Use StringVar associated with Entry
@@ -849,7 +863,6 @@ class AsciiArtGenerator(tk.Tk):
                     lines[i] += char_lines[i] + " "
         prefixed_suffixed_lines = [prefix + line + suffix for line in lines]
         return "\n".join(prefixed_suffixed_lines)
-
 
 if __name__ == "__main__":
     app = AsciiArtGenerator()
