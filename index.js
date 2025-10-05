@@ -819,3 +819,75 @@ const ASCII_CHARS = {
       });
     }
   };
+
+let comment_c = document.getElementById("comment-c");
+let comment_cpp = document.getElementById("comment-cpp");
+let comment_c_sharp = document.getElementById('comment-c-sharp');
+let comment_java = document.getElementById("comment-java");
+let comment_js = document.getElementById("comment-js");
+
+let comment_python = document.getElementById("comment-python");
+let comment_html = document.getElementById("comment-html");
+let comment_css = document.getElementById("comment-css");
+let comment_php = document.getElementById("comment-php");
+
+let comment_sql = document.getElementById("comment-sql");
+let comment_matlab = document.getElementById("comment-matlab");
+
+let prefix = document.getElementById("prefix");
+let suffix = document.getElementById("suffix");
+
+comment_c.addEventListener("click", () => {
+    prefix.value = "// ";
+    suffix.value = "";
+});
+
+comment_php.addEventListener("click", () => {
+    prefix.value = "# ";
+    suffix.value = "";
+});
+
+comment_cpp.addEventListener("click", () => {
+    prefix.value = "// ";
+    suffix.value = "";
+});
+
+comment_c_sharp.addEventListener("click", () => {
+    prefix.value = "// ";
+    suffix.value = "";
+});
+
+comment_java.addEventListener("click", () => {
+    prefix.value = "// ";
+    suffix.value = "";
+});
+
+comment_js.addEventListener("click", () => {
+    prefix.value = "// ";
+    suffix.value = "";
+});
+
+comment_python.addEventListener("click", () => {
+    prefix.value = "# ";
+    suffix.value = "";
+});
+
+comment_html.addEventListener("click", () => {
+    prefix.value = "<!-- ";
+    suffix.value = " -->";
+});
+
+comment_css.addEventListener("click", () => {
+    prefix.value = "/* ";
+    suffix.value = "*/";
+});
+
+comment_sql.addEventListener("click", () => {
+    prefix.value = "--";
+    suffix.value = "";
+});
+
+comment_matlab.addEventListener("click", () => {
+    prefix.value = "% ";
+    suffix.value = "";
+});
