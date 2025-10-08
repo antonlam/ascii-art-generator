@@ -784,7 +784,7 @@ const ASCII_CHARS = {
 
   window.generateAsciiArt = function() {
     const inputText = document.getElementById("inputText").value;
-    const prefix = document.getElementById("prefix").value || "#";
+    const prefix = document.getElementById("prefix").value || "";
     const suffix = document.getElementById("suffix").value || "";
     const outputArea = document.getElementById("outputArt");
   
